@@ -42,4 +42,20 @@ class RedditTest {
                 .isTrue();
     }
 
+    @Test
+    @DisplayName("Public post")
+    void testPostIdSubreddit(){
+        String subredditName = "Selenium";
+        testLogin();
+        redditActions.closeDialogModal();
+        redditActions.searchForSubreddit(subredditName);
+        redditActions.clickOnSubreddit(subredditName);
+        redditActions.clickOnInputToPost();
+        redditActions.enterPostTitle("My new post from test automation");
+        redditActions.enterPostText("This is my new post to test automation");
+        redditActions.clickOnSubmitPostButton();
+        Assertions.assertThat(redditActions.isPostPublished())
+                .isTrue();
+    }
+
 }
